@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1554236034 source:/home/steven/GitHub/CS260-Lab1/ArrayInt/main.cpp
+	<iostream>
+	<iomanip>
+	<stdexcept>
+	"ArrayInt.h"
+
+1554236001 /home/steven/GitHub/CS260-Lab1/ArrayInt/include/ArrayInt.h
+
+1554235996 source:/home/steven/GitHub/CS260-Lab1/ArrayInt/src/ArrayInt.cpp
+	<iostream>
+	<string.h>
+	"ArrayInt.h"
+
