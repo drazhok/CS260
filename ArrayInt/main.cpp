@@ -12,10 +12,10 @@
 #include "ArrayInt.h"
 
 
-//#define TEST_CONSTRUCTOR
-//#define TEST_SET_GET
-//#define TEST_APPEND
-//#define TEST_MAKE_ROOM
+#define TEST_CONSTRUCTOR
+#define TEST_SET_GET
+#define TEST_APPEND
+#define TEST_MAKE_ROOM
 #define TEST_INSERT_REMOVE
 
 

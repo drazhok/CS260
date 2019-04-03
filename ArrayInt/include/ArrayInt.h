@@ -8,10 +8,8 @@ class ArrayInt
         ArrayInt();
         ArrayInt(int newSize);
         void setSize(int newSize);
-        void initializeValues();
         int getSize();
         int getAt(int index);
-        void shiftArrRight(int startingIndex);
         void setAt(int index, int value);
         void insertAt(int index, int value);
         int removeAt(int index);
@@ -22,6 +20,7 @@ class ArrayInt
         int *arr;
         int arrSize;
         int valueCount;
+        int lastValueIndex;
 };
 
 #endif

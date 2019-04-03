@@ -12,3 +12,16 @@
 	<string.h>
 	"ArrayInt.h"
 
+1554329335 source:c:\github\cs260-lab1\arrayint\main.cpp
+	<iostream>
+	<iomanip>
+	<stdexcept>
+	"ArrayInt.h"
+
+1554327567 c:\github\cs260-lab1\arrayint\include\arrayint.h
+
+1554329227 source:c:\github\cs260-lab1\arrayint\src\arrayint.cpp
+	<iostream>
+	<string.h>
+	"ArrayInt.h"
+
