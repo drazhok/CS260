@@ -12,6 +12,8 @@ ArrayInt::ArrayInt() {
 
 // Overloaded constructor for a custom size
 ArrayInt::ArrayInt(int n) {
+
+    // Creates a new array with a default size if n is an invalid number
     if(n < 1) {
         arr = new int[10];
         arrSize = 10;
@@ -29,10 +31,14 @@ ArrayInt::ArrayInt(int n) {
 // Sets the size of the array
 void ArrayInt::setSize(int newSize) {
     if(newSize > arrSize) {
+
+        // Creates a temporary array...
         int *tempArr = new int[newSize];
 
+        // ...Then copies the memory from the existing array...
         memcpy(tempArr, arr, newSize * sizeof(int));
 
+        // ...Then finally, deletes the old array.
         delete[] arr;
 
         arr = tempArr;
@@ -57,7 +63,11 @@ int ArrayInt::getAt(int index) {
 void ArrayInt::setAt(int index, int value) {
     if(index >= 0 && index < arrSize) {
         *(arr + index) = value;
+
+        // I'm not sure how to check if a value existed previously, so if
+        // there was an existing value, the valueCount goes up anyways.
         valueCount++;
+
         if(index > lastValueIndex)
             lastValueIndex = index;
     }
@@ -69,7 +79,10 @@ void ArrayInt::setAt(int index, int value) {
 void ArrayInt::insertAt(int index, int value) {
     int oldValueCount = valueCount;
 
+    // Shifts all values to the right by one
     for(int i = lastValueIndex; i >= index; i--) {
+
+        // Resizes the array if the next index is too large
         if((i + 1) >= arrSize)
             setSize(arrSize * 2);
 
@@ -83,18 +96,22 @@ void ArrayInt::insertAt(int index, int value) {
 
 // Removes a value at the specified index
 int ArrayInt::removeAt(int index) {
-    if(index < 0 || index >= arrSize || valueCount <= 0)
+
+    // Error checking in case the index is incorrect
+    if(index < 0 || index >= arrSize || valueCount <= 0 || index > lastValueIndex)
         throw std::out_of_range("Index is out of range.");
 
     int value = getAt(index);
     int oldValueCount = valueCount;
 
-    for(int i = index; i <= lastValueIndex; i++) {
+    // Shifts all values left by one
+    for(int i = index; i <= lastValueIndex; i++)
         setAt(i, *(arr + (i + 1)));
-    }
 
+    // setAt increments the value count each time, so we have to reset it after shifting everything
     valueCount = oldValueCount;
 
+    // Decrements the last value index and value count
     lastValueIndex--;
     valueCount--;
     return value;
@@ -102,6 +119,8 @@ int ArrayInt::removeAt(int index) {
 
 // Appends a value to the end of the array
 void ArrayInt::append(int value) {
+
+    // Expands the array if the array is full
     if((lastValueIndex + 1) >= arrSize)
         setSize(arrSize * 2);
 
