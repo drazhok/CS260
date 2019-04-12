@@ -6,8 +6,7 @@
 ArrayInt::ArrayInt() {
     arr = new int[10];
     arrSize = 10;
-    valueCount = 0;
-    lastValueIndex = -1;
+    lastValueIndex = -1; // Set to -1 since there is no last value index, since no values exist yet
 }
 
 // Overloaded constructor for a custom size
@@ -18,13 +17,11 @@ ArrayInt::ArrayInt(int n) {
         arr = new int[10];
         arrSize = 10;
         lastValueIndex = -1;
-        valueCount = 0;
     }
     else {
         arr = new int[n];
         arrSize = n;
         lastValueIndex = -1;
-        valueCount = 0;
     }
 }
 
@@ -64,10 +61,6 @@ void ArrayInt::setAt(int index, int value) {
     if(index >= 0 && index < arrSize) {
         *(arr + index) = value;
 
-        // I'm not sure how to check if a value existed previously, so if
-        // there was an existing value, the valueCount goes up anyways.
-        valueCount++;
-
         if(index > lastValueIndex)
             lastValueIndex = index;
     }
@@ -77,7 +70,6 @@ void ArrayInt::setAt(int index, int value) {
 
 // Inserts a value at the specified index
 void ArrayInt::insertAt(int index, int value) {
-    int oldValueCount = valueCount;
 
     // Shifts all values to the right by one
     for(int i = lastValueIndex; i >= index; i--) {
@@ -89,8 +81,6 @@ void ArrayInt::insertAt(int index, int value) {
         setAt((i + 1), *(arr + i));
     }
 
-    valueCount = oldValueCount;
-
     setAt(index, value);
 }
 
@@ -98,22 +88,17 @@ void ArrayInt::insertAt(int index, int value) {
 int ArrayInt::removeAt(int index) {
 
     // Error checking in case the index is incorrect
-    if(index < 0 || index >= arrSize || valueCount <= 0 || index > lastValueIndex)
+    if(index < 0 || index >= arrSize || lastValueIndex == -1 || index > lastValueIndex)
         throw std::out_of_range("Index is out of range.");
 
     int value = getAt(index);
-    int oldValueCount = valueCount;
 
     // Shifts all values left by one
     for(int i = index; i <= lastValueIndex; i++)
         setAt(i, *(arr + (i + 1)));
 
-    // setAt increments the value count each time, so we have to reset it after shifting everything
-    valueCount = oldValueCount;
-
     // Decrements the last value index and value count
     lastValueIndex--;
-    valueCount--;
     return value;
 }
 

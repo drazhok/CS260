@@ -19,7 +19,6 @@ class ArrayInt
     private:
         int *arr;
         int arrSize;
-        int valueCount;
         int lastValueIndex;
 };
 
