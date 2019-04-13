@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1555199855 source:c:\repositories\github\cs260\doubleendedqueue\src\dequeue.cpp
+	<iostream>
+	<string.h>
+	"Dequeue.h"
+
+1555197521 c:\repositories\github\cs260\doubleendedqueue\include\dequeue.h
+
+1555198674 source:c:\repositories\github\cs260\doubleendedqueue\main.cpp
+	<iostream>
+	<iomanip>
+	<stdexcept>
+	"Dequeue.h"
+
