@@ -22,8 +22,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Dequeue.h" />
+		<Unit filename="include/Stack.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Dequeue.cpp" />
+		<Unit filename="src/Stack.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

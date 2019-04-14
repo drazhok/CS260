@@ -11,22 +11,22 @@
 #include <stdexcept>
 
 #include "Dequeue.h"
-//#include "Stack.h"
+#include "Stack.h"
 
 using namespace std;
 
     // uncomment the lines for the tests
     // you want to run.  Each is separate
 
-//#define TEST_DEQUEUE_LIFO
-//#define TEST_DEQUEUE_FIFO
-//#define TEST_DEQUEUE_WRAP
-//#define TEST_DEQUEUE_EXCEPTS
-//#define TEST_DEQUEUE_GROW
+#define TEST_DEQUEUE_LIFO
+#define TEST_DEQUEUE_FIFO
+#define TEST_DEQUEUE_WRAP
+#define TEST_DEQUEUE_EXCEPTS
+#define TEST_DEQUEUE_GROW
 
-//#define TEST_LIST_DEQUEUE
+#define TEST_LIST_DEQUEUE
 
-//#define TEST_STACK
+#define TEST_STACK
 
 int main() {
 

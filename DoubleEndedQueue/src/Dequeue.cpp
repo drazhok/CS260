@@ -3,14 +3,13 @@
 #include "Dequeue.h"
 
 Dequeue::Dequeue() {
-    arr = new int[100];
+    arr = new int[100]; // Defaults to an array of size 100
     arrSize = 100;
-
-    Initialize();
+    left = right = -1; // Initializes left and right to -1, since no value exists yet
 }
 
 Dequeue::Dequeue(int newSize) {
-    if(newSize <= 0) {
+    if(newSize <= 0) { // Defaults to 100 if an invalid number is given
         arr = new int[100];
         arrSize = 100;
     }
@@ -19,47 +18,43 @@ Dequeue::Dequeue(int newSize) {
         arrSize = newSize;
     }
 
-    Initialize();
-}
-
-void Dequeue::Initialize() {
     left = right = -1;
 }
 
 void Dequeue::setSize(int newSize) {
-    if(newSize > arrSize) {
-        int *tempArr = new int[newSize];
+    if(newSize > arrSize) { // Verifies that the new size is valid
+        int *tempArr = new int[newSize]; // Creates a new array with the new size
 
-        if(left > right) {
-            for(int i = 0; i < arrSize; i++)
+        if(left > right) { // If left is  greater than right, there must have been a wrap
+            for(int i = 0; i < arrSize; i++) // Iterate through and copy all values to the new array
                 *(tempArr + i) = getLeft();
 
-            left = 0;
-            right = arrSize - 1;
+            left = 0; // All values are on the left side of the array, so left must be 0
+            right = arrSize - 1; // The array was previously full, so right is arrSize - 1
         }
         else {
-            memcpy(tempArr, arr, sizeof(int) * newSize);
+            memcpy(tempArr, arr, sizeof(int) * newSize); // Otherwise, left must be 0 and right must be arrSize - 1 already, so we just copy the memory
         }
 
-        arrSize = newSize;
+        arrSize = newSize; // Updates arrSize
 
-        delete[] arr;
+        delete[] arr; // Deletes the original array
 
-        arr = tempArr;
+        arr = tempArr; // Sets the array to the new array
     }
 }
 
 void Dequeue::addLeft(int value) {
     if(isFull()) {
-        setSize(2 * arrSize);
-        left = (left + arrSize - 1) % arrSize;
+        setSize(2 * arrSize); // If the array is full, double the size
+        left = (left + arrSize - 1) % arrSize; // In a circular array, the previous value is given with this math operation
     }
     else if(isEmpty())
-        left = right = 0;
+        left = right = 0; // If the array is empty, left and right will be zero
     else
         left = (left + arrSize - 1) % arrSize;
 
-    *(arr + left) = value;
+    *(arr + left) = value; // Adds the value
 }
 
 void Dequeue::addRight(int value) {
@@ -70,13 +65,13 @@ void Dequeue::addRight(int value) {
     else if(isEmpty())
         right = left = 0;
     else
-        right = (right + 1) % arrSize;
+        right = (right + 1) % arrSize; // In a circular array, the next value is given with this math operation
 
     *(arr + right) = value;
 }
 
 int Dequeue::getLeft() {
-    if(isEmpty())
+    if(isEmpty()) // Throws an error if the array is empty
         throw std::range_error("The double-ended queue is empty.");
 
     int oldLeft = left;
@@ -84,7 +79,7 @@ int Dequeue::getLeft() {
 
     left = (left + 1) % arrSize;
 
-    if(oldLeft == right)
+    if(oldLeft == right) // Checks if we're removing the final value
         left = right = -1;
 
     return value;
@@ -105,20 +100,27 @@ int Dequeue::getRight() {
     return value;
 }
 
+std::string Dequeue::listLeftRight() {
+    if(isEmpty()) return "Queue is empty";
+
+    std::string list = "";
+
+    for(int i = left; i != (right + 1) % arrSize; i = (i + 1) % arrSize) // Loops through the array (with wrapping)
+        list += std::to_string(*(arr + i)) + " "; // Self explanatory. Converts the integer to a string and concatenates it to the list string
+
+    return list;
+}
+
 bool Dequeue::isEmpty() {
-    if(left == -1 && right == -1)
-        return true;
-    else
-        return false;
+    if(left == -1 && right == -1) return true; // If left and right are -1, the array is empty
+    else return false;
 }
 
 bool Dequeue::isFull() {
-    if((left + arrSize - 1) % arrSize == right)
-        return true;
-    else
-        return false;
+    if((left + arrSize - 1) % arrSize == right) return true; // If the previous value index is the same value as the right index, the array is full
+    else return false;
 }
 
 Dequeue::~Dequeue() {
-    delete[] arr;
+    delete[] arr; // Deletes the array at the end to prevent a memory leak
 }
