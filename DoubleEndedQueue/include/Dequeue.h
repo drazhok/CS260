@@ -5,7 +5,8 @@ class Dequeue {
     public:
         Dequeue();
         Dequeue(int newSize);
-        void setSize(int newSize);
+        void initialize();
+        void resize();
         void addLeft(int value);
         void addRight(int value);
         int getLeft();

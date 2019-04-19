@@ -4,7 +4,7 @@
 	<string.h>
 	"Dequeue.h"
 
-1555280426 c:\repositories\github\cs260\doubleendedqueue\include\dequeue.h
+1555641902 c:\repositories\github\cs260\doubleendedqueue\include\dequeue.h
 
 1555280128 source:c:\repositories\github\cs260\doubleendedqueue\main.cpp
 	<iostream>
@@ -15,7 +15,7 @@
 
 1555280430 c:\repositories\github\cs260\doubleendedqueue\include\stack.h
 
-1555287320 source:c:\repositories\github\cs260\doubleendedqueue\src\stack.cpp
+1555608701 source:c:\repositories\github\cs260\doubleendedqueue\src\stack.cpp
 	<iostream>
 	"Dequeue.h"
 	"Stack.h"

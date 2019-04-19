@@ -2,13 +2,14 @@
 #include <string.h>
 #include "Dequeue.h"
 
-Dequeue::Dequeue() {
-    arr = new int[100]; // Defaults to an array of size 100
+Dequeue::Dequeue() { // Defaults to an array of size 100
+    arr = new int[100];
     arrSize = 100;
-    left = right = -1; // Initializes left and right to -1, since no value exists yet
+
+    initialize();
 }
 
-Dequeue::Dequeue(int newSize) {
+Dequeue::Dequeue(int newSize) { // Creates an array with a given size
     if(newSize <= 0) { // Defaults to 100 if an invalid number is given
         arr = new int[100];
         arrSize = 100;
@@ -18,10 +19,16 @@ Dequeue::Dequeue(int newSize) {
         arrSize = newSize;
     }
 
-    left = right = -1;
+    initialize();
 }
 
-void Dequeue::setSize(int newSize) {
+void Dequeue::initialize() { // Initializes shared values
+    left = right = -1; // Initializes left and right to -1, since no value exists yet
+}
+
+void Dequeue::resize() {
+    int newSize = 2 * arrSize;
+
     if(newSize > arrSize) { // Verifies that the new size is valid
         int *tempArr = new int[newSize]; // Creates a new array with the new size
 
@@ -45,12 +52,15 @@ void Dequeue::setSize(int newSize) {
 }
 
 void Dequeue::addLeft(int value) {
+
     if(isFull()) {
-        setSize(2 * arrSize); // If the array is full, double the size
+        resize(); // If the array is full, double the size
         left = (left + arrSize - 1) % arrSize; // In a circular array, the previous value is given with this math operation
     }
+
     else if(isEmpty())
         left = right = 0; // If the array is empty, left and right will be zero
+
     else
         left = (left + arrSize - 1) % arrSize;
 
@@ -58,23 +68,28 @@ void Dequeue::addLeft(int value) {
 }
 
 void Dequeue::addRight(int value) {
+
     if(isFull()) {
-        setSize(2 * arrSize);
+        resize();
         right = (right + 1) % arrSize;
     }
+
     else if(isEmpty())
         right = left = 0;
+
     else
-        right = (right + 1) % arrSize; // In a circular array, the next value is given with this math operation
+        right = (right + 1) % arrSize; // In a circular array, the next value is given with this operation
 
     *(arr + right) = value;
 }
 
 int Dequeue::getLeft() {
+
     if(isEmpty()) // Throws an error if the array is empty
         throw std::range_error("The double-ended queue is empty.");
 
     int oldLeft = left;
+
     int value = *(arr + left);
 
     left = (left + 1) % arrSize;
@@ -86,10 +101,12 @@ int Dequeue::getLeft() {
 }
 
 int Dequeue::getRight() {
+
     if(isEmpty())
         throw std::range_error("The double-ended queue is empty.");
 
     int oldRight = right;
+
     int value = *(arr + right);
 
     right = (right + arrSize - 1) % arrSize;
