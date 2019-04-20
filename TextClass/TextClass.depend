@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1555777561 source:c:\repositories\github\cs260\textclass\src\textclass.cpp
+	"TextClass.h"
+
+1555777660 c:\repositories\github\cs260\textclass\include\textclass.h
+
+1555777614 source:c:\repositories\github\cs260\textclass\main.cpp
+	<iostream>
+	<stdexcept>
+	"TextClass.h"
+
