@@ -12,7 +12,7 @@
 
 // Lab include files
 #include "TextClass.h"
-//#include "StudentList.hpp"
+#include "StudentList.h"
 
 
 using namespace std;
@@ -22,9 +22,9 @@ int main(int args, char * argv[])
 
     // defines to select a given test
 #define TextClass_test
-//#define Iter_test
-//#define Append_test
-//#define StudentList_test
+#define Iter_test
+#define Append_test
+#define StudentList_test
 
 
 #ifdef TextClass_test
