@@ -1,17 +1,17 @@
 # depslib dependency file v1.0
-1555814615 source:c:\repositories\github\cs260\textclass\src\textclass.cpp
+1555904650 source:c:\repositories\github\cs260\textclass\src\textclass.cpp
 	<iostream>
 	"TextClass.h"
 
 1555816458 c:\repositories\github\cs260\textclass\include\textclass.h
 
-1555863732 source:c:\repositories\github\cs260\textclass\main.cpp
+1555887005 source:c:\repositories\github\cs260\textclass\main.cpp
 	<iostream>
 	<stdexcept>
 	"TextClass.h"
 	"StudentList.h"
 
-1555863640 source:c:\repositories\github\cs260\textclass\src\studentlist.cpp
+1555905042 source:c:\repositories\github\cs260\textclass\src\studentlist.cpp
 	"StudentList.h"
 
 1555861801 c:\repositories\github\cs260\textclass\include\studentlist.h
@@ -20,6 +20,6 @@
 1555817428 c:\repositories\github\cs260\textclass\include\student.h
 	<iostream>
 
-1555818143 source:c:\repositories\github\cs260\textclass\src\student.cpp
+1555905244 source:c:\repositories\github\cs260\textclass\src\student.cpp
 	"Student.h"
 

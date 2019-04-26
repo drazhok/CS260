@@ -4,6 +4,7 @@ StudentList::StudentList() {
     head = tail = nullptr;
 }
 
+// Defines an individual node in the list
 struct StudentList::node {
     node() {
         next = nullptr;
@@ -19,6 +20,7 @@ struct StudentList::node {
     struct node *next;
 };
 
+// Inserts a new head
 void StudentList::insertHead(Student *s) {
     if(isEmpty())
         head = tail = new node(s);
@@ -32,6 +34,7 @@ void StudentList::insertHead(Student *s) {
     }
 }
 
+// Inserts a new tail
 void StudentList::insertTail(Student *s) {
     if(isEmpty())
         head = tail = new node(s);
@@ -45,6 +48,7 @@ void StudentList::insertTail(Student *s) {
     }
 }
 
+// Deletes the current head and returns it
 Student* StudentList::deleteHead() {
     if(isEmpty())
         throw std::underflow_error("The StudentList is empty!");
@@ -64,6 +68,7 @@ Student* StudentList::deleteHead() {
     }
 }
 
+// Detects if the list is empty
 bool StudentList::isEmpty() {
     if(head == nullptr || tail == nullptr)
         return true;
@@ -71,6 +76,7 @@ bool StudentList::isEmpty() {
         return false;
 }
 
+// Finds a single node's data by the student's name
 bool StudentList::findKey(std::string name) {
     struct node *currentNode = head;
 
@@ -84,6 +90,7 @@ bool StudentList::findKey(std::string name) {
     return false;
 }
 
+// Deletes a key by name
 bool StudentList::deleteKey(std::string name) {
     struct node *lastNode;
     struct node *currentNode = head;
@@ -112,14 +119,17 @@ bool StudentList::deleteKey(std::string name) {
     return false;
 }
 
+// Deletes all the nodes
 StudentList::~StudentList() {
     struct node *currentNode = head;
 
-    while(currentNode != nullptr) {
-        struct node *temp = currentNode;
+    if(!isEmpty()) {
+        while(currentNode != nullptr) {
+            struct node *temp = currentNode;
 
-        currentNode = currentNode->next;
+            currentNode = currentNode->next;
 
-        delete temp;
+            delete temp;
+        }
     }
 }

@@ -9,6 +9,7 @@ TextClass::TextClass() {
 
 }
 
+// Defines each node
 struct TextClass::node {
 
     node(char value) {
@@ -24,6 +25,7 @@ struct TextClass::node {
 
 };
 
+// Inserts a new head to the list
 void TextClass::insertHead(char value) {
 
     if(isEmpty())
@@ -42,6 +44,7 @@ void TextClass::insertHead(char value) {
 
 }
 
+// Inserts a new tail to the list
 void TextClass::insertTail(char value) {
 
     if(isEmpty())
@@ -60,6 +63,7 @@ void TextClass::insertTail(char value) {
 
 }
 
+// Deletes a head from the list
 char TextClass::deleteHead() {
 
     if(isEmpty())
@@ -82,6 +86,7 @@ char TextClass::deleteHead() {
 
 }
 
+// Deletes a tail from the list
 char TextClass::deleteTail() {
 
     if(isEmpty())
@@ -104,6 +109,7 @@ char TextClass::deleteTail() {
 
 }
 
+// Determines if the list is empty
 bool TextClass::isEmpty() {
 
     if(tail == nullptr || head == nullptr)
@@ -113,30 +119,39 @@ bool TextClass::isEmpty() {
 
 }
 
+// Finds a key and sets iter to it
 bool TextClass::findKey(char value) {
 
-    struct node *currentNode = head;
+    // EDIT: my code now successfully wraps. Thanks for the help, Alexander.
+    struct node *currentNode = (iter == nullptr) ? head : iter->next;
 
-    while(currentNode != nullptr) {
-
-        if(currentNode->data == value && iter != currentNode) {
-            iter = currentNode;
+    for (struct node *ptr = currentNode; ptr != nullptr; ptr = ptr->next) {
+        if (ptr->data == value) {
+            iter = ptr;
             return true;
         }
-        else {
-            currentNode = currentNode->next;
-        }
-
     }
 
+    if (iter != nullptr) {
+
+        for (struct node *ptr = head; ptr != iter; ptr = ptr->next) {
+            if (ptr->data == value) {
+
+                iter = ptr;
+                return true;
+            }
+        }
+    }
+
+
     iter = nullptr;
-
     return false;
-
 }
 
+// Inserts a key behind the location of iter
 bool TextClass::insertKey(char value) {
 
+    // If iter is nullptr, we can't insert at any location
     if(iter == nullptr)
         return false;
 
@@ -144,7 +159,6 @@ bool TextClass::insertKey(char value) {
         insertHead(value);
         return true;
     }
-
 
     struct node *newNode = new node(value);
 
@@ -162,6 +176,7 @@ bool TextClass::insertKey(char value) {
 
 }
 
+// Deletes the node at iter
 bool TextClass::deleteIter() {
 
     if(iter == nullptr)
@@ -183,6 +198,7 @@ bool TextClass::deleteIter() {
 
 }
 
+// Deletes the first key with the given value
 bool TextClass::deleteKey(char value) {
 
     struct node *currentNode = head;
@@ -213,6 +229,7 @@ bool TextClass::deleteKey(char value) {
 
 }
 
+// Displays a list of all the nodes
 std::string TextClass::displayList() {
 
     std::string list = "";
@@ -234,25 +251,28 @@ std::string TextClass::displayList() {
     return list;
 }
 
+// Appends a given list to the list
 void TextClass::appendList(TextClass &list) {
 
     std::string word = list.displayList();
 
     for(int i = 0; i < word.length(); i++)
-        insertTail(word[i]);
+        insertTail(list.deleteHead());
 
 }
 
+// Deletes all the nodes
 TextClass::~TextClass() {
 
     struct node *currentNode = head;
 
-    while(currentNode != nullptr) {
-        struct node *tempNode = currentNode;
+    if(!isEmpty()) {
+        while(currentNode != nullptr) {
+            struct node *tempNode = currentNode;
 
-        currentNode = tempNode->next;
+            currentNode = tempNode->next;
 
-        delete tempNode;
+            delete tempNode;
+        }
     }
-
 }
