@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1556402119 source:c:\repositories\github\cs260\parsetree\main.cpp
+	<iostream>
+	"ParseTree.h"
+
+1556465370 c:\repositories\github\cs260\parsetree\include\parsetree.h
+	<string>
+	"node.h"
+
+1556399232 c:\repositories\github\cs260\parsetree\include\node.h
+
+1556399252 source:c:\repositories\github\cs260\parsetree\src\node.cpp
+	"node.h"
+
+1556464750 source:c:\repositories\github\cs260\parsetree\src\parsetree.cpp
+	"ParseTree.h"
+	<stack>
+	<ctype.h>
+	<iostream>
+	<stdexcept>
+
