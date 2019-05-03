@@ -154,22 +154,12 @@ std::string ParseTree::recPostOrder(node *currentNode) {
 // Annihilates the tree (because destroying is for wimps)
 void ParseTree::ANNIHILATE(node *currentNode) {
 
-    // Base case, if the current node is nullptr then don't do anything
+    // Thanks Alex! This is a much better solution than
+    // what I had.
     if(currentNode != nullptr) {
-
-        // Delete nodes with empty leaf nodes
-        if(currentNode->left == nullptr && currentNode->right == nullptr) {
-
-            delete currentNode;
-            currentNode = nullptr;
-        }
-
-        // Otherwise, recur to the left and right node until a double-nullptr branch is found
-        else {
-
-            ANNIHILATE(currentNode->left);
-            ANNIHILATE(currentNode->right);
-        }
+        ANNIHILATE(currentNode->left);
+        ANNIHILATE(currentNode->right);
+        delete currentNode;
     }
 }
 
