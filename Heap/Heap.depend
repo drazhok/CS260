@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1557337245 source:c:\repositories\github\cs260\heap\src\heap.cpp
+	<iostream>
+	<stdlib.h>
+	<memory.h>
+	"Heap.h"
+
+1557337122 c:\repositories\github\cs260\heap\include\heap.h
+
+1557337619 source:c:\repositories\github\cs260\heap\src\priorityqueue.cpp
+	"PriorityQueue.h"
+
+1557337618 c:\repositories\github\cs260\heap\include\priorityqueue.h
+	"Heap.h"
+
+1557002945 source:c:\repositories\github\cs260\heap\main.cpp
+	<iostream>
+	"Heap.h"
+	"PriorityQueue.h"
+
