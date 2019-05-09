@@ -11,15 +11,15 @@
 #include <stdexcept>
 
 // uncomment the test you want to run
-#define STRING_HASH
+//#define STRING_HASH
 //#define CHAINED_HASH
 
 
-#ifdef STRING_HASH
-#include "StringHash.hpp"
-#endif
+//#ifdef STRING_HASH
+#include "StringHash.h"
+//#endif
 #ifdef CHAINED_HASH
-#include "ChainedHash.hpp"
+#include "ChainedHash.h"
 #endif
 
 using namespace std;
