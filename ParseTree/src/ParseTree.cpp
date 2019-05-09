@@ -155,7 +155,7 @@ std::string ParseTree::recPostOrder(node *currentNode) {
 void ParseTree::ANNIHILATE(node *currentNode) {
 
     // Thanks Alex! This is a much better solution than
-    // what I had.
+    // what I had. Really appreciate it.
     if(currentNode != nullptr) {
         ANNIHILATE(currentNode->left);
         ANNIHILATE(currentNode->right);
