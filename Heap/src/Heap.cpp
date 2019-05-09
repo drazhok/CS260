@@ -37,7 +37,7 @@ int Heap::remove() {
     count--;
 
     // Sets the value at index 0 to the final value
-    *arr = *(arr + count);
+    arr[0] = arr[count];
 
     // Sorts the heap again
     trickleDown(0);
@@ -67,7 +67,7 @@ void Heap::insert(int value) {
     if(count >= size)
         resize();
 
-    *(arr + count) = value;
+    arr[count] = value;
 
     // Sorts the array afterwards, starting
     // from the bottom
@@ -86,7 +86,7 @@ void Heap::bubbleUp(int index) {
     // If the parent's value is smaller, swap
     // them since this is a max heap and values
     // towards the top are larger
-    if(*(arr + parent(index)) < *(arr + index)) {
+    if(arr[parent(index)] < arr[index]) {
 
         swap(parent(index), index);
 
@@ -100,10 +100,10 @@ void Heap::bubbleUp(int index) {
 // Swaps one value with another in the array
 void Heap::swap(int indexOne, int indexTwo) {
 
-    int value = *(arr + indexOne);
+    int value = arr[indexOne];
 
-    *(arr + indexOne) = *(arr + indexTwo);
-    *(arr + indexTwo) = value;
+    arr[indexOne] = arr[indexTwo];
+    arr[indexTwo] = value;
 }
 
 // Sorts the array from the given node down.
@@ -119,7 +119,7 @@ void Heap::trickleDown(int index) {
 
         // If the child element of the current 'node'
         // is larger, swap the parent and the child
-        if(*(arr + left(index)) > *(arr + index)) {
+        if(arr[left(index)] > arr[index]) {
 
             swap(left(index), index);
             trickleDown(left(index));
@@ -130,9 +130,9 @@ void Heap::trickleDown(int index) {
 
         // Swaps the left value with it's parent if the parent
         // is smaller
-        if(*(arr + left(index)) > *(arr + right(index))) {
+        if(arr[left(index)] > arr[right(index)]) {
 
-            if(*(arr + left(index)) > *(arr + index)) {
+            if(arr[left(index)] > arr[index]) {
 
                 swap(left(index), index);
                 trickleDown(left(index));
@@ -144,7 +144,7 @@ void Heap::trickleDown(int index) {
         // Otherwise, swaps the right value with it's parent
         else {
 
-            if(*(arr + right(index)) > *(arr + index)) {
+            if(arr[right(index)] > arr[index]) {
 
                 swap(right(index), index);
                 trickleDown(right(index));
