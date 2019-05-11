@@ -21,8 +21,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/ChainedHash.h" />
 		<Unit filename="include/StringHash.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/ChainedHash.cpp" />
 		<Unit filename="src/StringHash.cpp" />
 		<Extensions>
 			<code_completion />

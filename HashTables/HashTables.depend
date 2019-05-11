@@ -1,11 +1,24 @@
 # depslib dependency file v1.0
-1557436812 source:c:\repositories\github\cs260\hashtables\main.cpp
+1557611772 source:c:\repositories\github\cs260\hashtables\main.cpp
 	<iostream>
 	<cstdlib>
 	<stdexcept>
 	"StringHash.h"
 	"ChainedHash.h"
 
-1557436893 c:\repositories\github\cs260\hashtables\include\stringhash.h
+1557604099 c:\repositories\github\cs260\hashtables\include\stringhash.h
 	<iostream>
+
+1557611854 source:c:\repositories\github\cs260\hashtables\src\stringhash.cpp
+	<memory.h>
+	"StringHash.h"
+
+1557610149 c:\repositories\github\cs260\hashtables\include\chainedhash.h
+	<iostream>
+	<list>
+
+1557611787 source:c:\repositories\github\cs260\hashtables\src\chainedhash.cpp
+	<iostream>
+	<algorithm>
+	"ChainedHash.h"
 

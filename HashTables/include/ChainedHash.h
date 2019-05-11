@@ -1,26 +1,24 @@
-#ifndef STRINGHASH_H
-#define STRINGHASH_H
-
 #include <iostream>
+#include <list>
 
-class StringHash
+#ifndef CHAINEDHASH_H
+#define CHAINEDHASH_H
+
+class ChainedHash
 {
     public:
-        StringHash();
-        StringHash(int newSize);
-        void initialize();
-        void resize();
+        ChainedHash();
+        ChainedHash(int newSize);
         void addItem(std::string value);
         bool findItem(std::string value);
         bool removeItem(std::string value);
         std::string displayTable();
         int hash(std::string value);
-        ~StringHash();
+        ~ChainedHash();
 
     private:
-        std::string *table;
+        std::list<std::string> *table;
         int tableSize;
-        int itemCount;
 };
 
 #endif
