@@ -38,11 +38,17 @@ void StringHash::resize() {
 
     std::string *temp = new std::string[newSize];
 
-    for(int i = 0; i < tableSize; i++)
-        temp[i] = table[i];
+    for(int i = 0; i < newSize; i++) {
+        if(i >= tableSize)
+            temp[i] = EMPTY;
+
+        else
+            temp[i] = table[i];
+    }
 
     delete[] table;
     table = temp;
+    tableSize = newSize;
 }
 
 // Adds an item to the hash table.

@@ -31,6 +31,8 @@ bool ChainedHash::findItem(std::string value) {
 
     int index = hash(value);
 
+    // Returns true if the value was found. If the end is
+    // reached, and no value is found, it returns false.
     return std::find(table[index].begin(), table[index].end(), value) != table[index].end();
 }
 
@@ -57,6 +59,7 @@ std::string ChainedHash::displayTable() {
 
         std::string subList = "";
 
+        // Generates the sublist text, adding a space after each one
         if(!table[i].empty())
             for(auto o : table[i]) subList += o + "     ";
 
@@ -78,9 +81,7 @@ int ChainedHash::hash(std::string value) {
     for(int i = 0; i < value.length(); i++) {
 
         index *= 26;
-
         index += value[i];
-
         index %= tableSize;
     }
 
