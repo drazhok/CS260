@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1558046193 source:c:\repositories\github\cs260\heapsort\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdlib>
+	<ctime>
+	"heapsort.hpp"
+
+1558057308 c:\repositories\github\cs260\heapsort\heapsort.hpp
+	<memory.h>
+
+1558051441 source:c:\repositories\github\cs260\heapsort\src\heap.cpp
+	<iostream>
+	<stdlib.h>
+	<memory.h>
+	"Heap.h"
+
+1558051463 c:\repositories\github\cs260\heapsort\include\heap.h
+
