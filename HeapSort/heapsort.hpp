@@ -101,27 +101,50 @@ void Heap::trickleDown(int i) {
     } while(i >= 0);
 }
 
+/*
+    THE ABOVE CODE IS JUST THE BASIC ALGORITHMS
+    FOR A HEAP.
+*/
+
+// Reverses an array recursively
 void reverseArray(int *theArray, int left, int right) {
 
+    // Base case. If the left marker is
+    // greater than the right marker,
+    // we've gone too far.
     if(left > right)
         return;
 
+    // Temporarily stores the left value.
     int leftValue = theArray[left];
 
+    // Swaps the left and right values.
     theArray[left] = theArray[right];
     theArray[right] = leftValue;
 
+    // Moves the left marker right by one
+    // and the right marker left by one.
     reverseArray(theArray, left + 1, right - 1);
 }
 
+
+
 void heapSort(int *theArray, int arraySize) {
+
+    // Creates a new heap, which heapifies
+    // the array.
     Heap h(theArray, arraySize);
 
+    // Loops through, swapping the last value
+    // with the first value and decrementing
+    // the last value marker.
     while(h.arrayCount > 1) {
         h.swapValues(h.arrayCount - 1, 0);
         h.arrayCount--;
         h.trickleDown(0);
     }
 
+    // Reverses the resulting array, giving us the
+    // final sorted array.
     reverseArray(theArray, 0, (arraySize - 1));
 }
