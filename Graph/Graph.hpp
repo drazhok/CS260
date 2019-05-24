@@ -38,6 +38,8 @@ class Graph
         std::string displayEdges();
         std::string displayMatrix();
 
+        std::string breadthFirst(char name);
+        std::string depthFirst(char name);
 
     private:
         static const int SIZE = 20;
@@ -50,4 +52,3 @@ class Graph
 };
 
 #endif // GRAPH_H
-

@@ -206,6 +206,30 @@ std::string Graph::displayMatrix()
     return ss.str();
 }
 
+// depth first traversal
+// starts at a given node
+// outputs a list of nodes visited
+// and a list of any unreached nodes
+std::string Graph::depthFirst(char name)
+{
+    std::string buffer = "Depth first traversal starting at ";
+    buffer += name;
+    buffer += "\n";
+    return buffer;
+}
+
+// breadth first traversal
+// starts at a given node
+// outputs a list of nodes visited
+// and a list of any unreached nodes
+std::string Graph::breadthFirst(char name)
+{
+    std::string buffer = "Breadth first traversal starting at ";
+    buffer += name;
+    buffer += "\n";
+    return buffer;
+}
+
     // helper function to reset all nodes to not visited
 void Graph::resetVisited()
 {
