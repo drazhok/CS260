@@ -215,6 +215,47 @@ std::string Graph::depthFirst(char name)
     std::string buffer = "Depth first traversal starting at ";
     buffer += name;
     buffer += "\n";
+
+    Node *startingNode = nullptr;
+
+    for(int i = 0; i < numNodes; i++)
+        if(nodeList[i]->name == name)
+            startingNode = nodeList[i];
+
+    if(startingNode == nullptr)
+        return "";
+
+    std::stack<Node *> LIFO;
+
+    LIFO.push(startingNode);
+
+    startingNode->visited = true;
+
+    buffer += startingNode->name;
+    buffer += " : ";
+
+    while(!LIFO.empty()) {
+
+        Node *currentNode = LIFO.top();
+
+        LIFO.pop();
+
+        for(Edge *ptr = currentNode->connects; ptr != nullptr; ptr = ptr->next) {
+            Node *otherEnd = nodeList[ptr->endIndex];
+
+            if(!otherEnd->visited) {
+                LIFO.push(currentNode);
+                LIFO.push(otherEnd);
+
+                buffer += otherEnd->name;
+                buffer += " ";
+
+                otherEnd->visited = true;
+                break;
+            }
+        }
+    }
+
     return buffer;
 }
 
@@ -227,6 +268,54 @@ std::string Graph::breadthFirst(char name)
     std::string buffer = "Breadth first traversal starting at ";
     buffer += name;
     buffer += "\n";
+
+    Node *startingNode = nullptr;
+
+    // Finds the node with the name given.
+    for(int i = 0; i < numNodes; i++)
+        if(nodeList[i]->name == name)
+            startingNode = nodeList[i];
+
+    // Returns an empty string if the node
+    // wasn't found.
+    if(startingNode == nullptr)
+        return "";
+
+    std::queue<Node *> FIFO;
+
+    FIFO.push(startingNode);
+
+    startingNode->visited = true;
+
+    buffer += startingNode->name;
+    buffer += " : ";
+
+    while(!FIFO.empty()) {
+
+        Node *currentNode = FIFO.front();
+
+        FIFO.pop();
+
+        for(Edge *ptr = currentNode->connects; ptr != nullptr; ptr = ptr->next) {
+
+            Node *otherEnd = nodeList[ptr->endIndex];
+
+            if(!otherEnd->visited) {
+
+                FIFO.push(otherEnd);
+
+                buffer += otherEnd->name;
+                buffer += " ";
+
+                otherEnd->visited = true;
+            }
+        }
+    }
+
+    resetVisited();
+
+    buffer += "\n";
+
     return buffer;
 }
 
