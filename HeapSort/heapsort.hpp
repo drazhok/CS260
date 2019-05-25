@@ -2,17 +2,15 @@
 
 class Heap {
 
-    public:
-        Heap(int *existingArray, int arraySize);
-
+    private:
         void resizeArray();
 
         int left(int i) { return (2 * i) + 1; }
         int right(int i) { return (2 * i) + 2; }
         int parent(int i) { return (i--) / 2; }
 
-        bool add(int value);
         void swapValues(int indexOne, int indexTwo);
+        void reverseArray(int *theArray, int left, int right);
 
         void bubbleUp(int i);
         void trickleDown(int i);
@@ -20,6 +18,10 @@ class Heap {
         int arraySize;
         int arrayCount;
         int *theArray;
+
+    public:
+        Heap(int *existingArray, int arraySize);
+        void heapSort(int *theArray, int arraySize);
 };
 
 Heap::Heap(int *existingArray, int existingSize) {
@@ -43,15 +45,6 @@ void Heap::resizeArray() {
 
     theArray = newArr;
     arraySize = newSize;
-}
-
-bool Heap::add(int value) {
-    if(arrayCount++ > arraySize)
-        resizeArray();
-
-    theArray[arrayCount++] = value;
-
-    bubbleUp(arrayCount - 1);
 }
 
 void Heap::swapValues(int indexOne, int indexTwo) {
@@ -107,7 +100,7 @@ void Heap::trickleDown(int i) {
 */
 
 // Reverses an array recursively
-void reverseArray(int *theArray, int left, int right) {
+void Heap::reverseArray(int *theArray, int left, int right) {
 
     // Base case. If the left marker is
     // greater than the right marker,
@@ -129,22 +122,29 @@ void reverseArray(int *theArray, int left, int right) {
 
 
 
+void Heap::heapSort(int *theArray, int arraySize) {
+
+    // Loops through, swapping the last value
+    // with the first value and decrementing
+    // the last value marker.
+    while(arrayCount > 1) {
+        swapValues(arrayCount - 1, 0);
+        arrayCount--;
+        trickleDown(0);
+    }
+
+    // Reverses the resulting array, giving us the
+    // final sorted array.
+    reverseArray(theArray, 0, (arraySize - 1));
+}
+
 void heapSort(int *theArray, int arraySize) {
 
     // Creates a new heap, which heapifies
     // the array.
     Heap h(theArray, arraySize);
 
-    // Loops through, swapping the last value
-    // with the first value and decrementing
-    // the last value marker.
-    while(h.arrayCount > 1) {
-        h.swapValues(h.arrayCount - 1, 0);
-        h.arrayCount--;
-        h.trickleDown(0);
-    }
-
-    // Reverses the resulting array, giving us the
-    // final sorted array.
-    reverseArray(theArray, 0, (arraySize - 1));
+    // Calls the heapSort method contained within
+    // the Heap class.
+    h.heapSort(theArray, arraySize);
 }
