@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1559338059 source:c:\repositories\github\cs260\weightedgraph\graph.cpp
+	"Graph.hpp"
+	<stdexcept>
+	<sstream>
+	<iomanip>
+	<queue>
+	<stack>
+
+1559338052 c:\repositories\github\cs260\weightedgraph\graph.hpp
+	<string>
+
+1559773431 source:c:\repositories\github\cs260\weightedgraph\wgraph.cpp
+	<iostream>
+	"WGraph.h"
+	"PQueue.h"
+	<stdexcept>
+	<sstream>
+	<iomanip>
+	<queue>
+	<stack>
+
+1559684866 c:\repositories\github\cs260\weightedgraph\wgraph.h
+	<string>
+
+1559690491 source:c:\repositories\github\cs260\weightedgraph\main.cpp
+	<iostream>
+	"WGraph.h"
+
+1559765087 c:\repositories\github\cs260\weightedgraph\include\pqueue.h
+	"../WGraph.h"
+	<iostream>
+
+1559773661 source:c:\repositories\github\cs260\weightedgraph\src\pqueue.cpp
+	"PQueue.h"
+	<memory.h>
+	<iostream>
+
